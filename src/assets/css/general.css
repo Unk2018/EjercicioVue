@@ -1,0 +1,47 @@
+/* Tamaño lg */
+@media only screen and (min-width: 992px) {
+  .menuHide {
+    display: none !important;
+  }
+
+  .titleSmallScreen {
+    display: block;
+  }
+}
+
+/* Tamaño md */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .menuHide {
+    display: none !important;
+  }
+
+  .titleSmallScreen {
+    display: block;
+  }
+}
+
+/* Tamaño md */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .titleSmallScreen {
+    display: none;
+  }
+}
+
+/* Tamaño sm */
+@media only screen and (max-width: 576px) {
+  .titleSmallScreen {
+    display: none;
+  }
+}
+
+/* Tamaño muy pequeño */
+@media only screen and (max-width: 302px) {
+  .titleSmallScreen {
+    display: none;
+  }
+
+  .verySmall {
+    flex: 0 0 41.6666666667% !important;
+    max-width: 41.6666666667% !important;
+  }
+}
