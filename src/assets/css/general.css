@@ -1,3 +1,8 @@
+.bordeLogin{
+  border-top: 5px solid red !important;
+  border-bottom: 5px solid rgb(122, 113, 222) !important;
+}
+
 /* Tamaño lg */
 @media only screen and (min-width: 992px) {
   .menuHide {
