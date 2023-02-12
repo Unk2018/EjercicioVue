@@ -1,4 +1,4 @@
-.bordeLogin{
+.bordeLogin {
   border-top: 5px solid red !important;
   border-bottom: 5px solid rgb(122, 113, 222) !important;
 }
@@ -12,6 +12,10 @@
   .titleSmallScreen {
     display: block;
   }
+
+  .usuario {
+    display: block;
+  }
 }
 
 /* Tamaño md */
@@ -23,6 +27,10 @@
   .titleSmallScreen {
     display: block;
   }
+
+  .usuario {
+    display: block;
+  }
 }
 
 /* Tamaño md */
@@ -30,11 +38,19 @@
   .titleSmallScreen {
     display: none;
   }
+
+  .usuario {
+    display: block;
+  }
 }
 
 /* Tamaño sm */
 @media only screen and (max-width: 576px) {
   .titleSmallScreen {
+    display: none;
+  }
+
+  .usuario {
     display: none;
   }
 }
@@ -48,5 +64,9 @@
   .verySmall {
     flex: 0 0 41.6666666667% !important;
     max-width: 41.6666666667% !important;
+  }
+
+  .usuario {
+    display: none;
   }
 }

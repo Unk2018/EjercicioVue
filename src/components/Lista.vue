@@ -9,6 +9,7 @@ export default {
             cantidad: '',
             lista: [],
             editing: false,
+            logged: false,
         }
     },
 
@@ -75,6 +76,13 @@ export default {
             this.coste = '';
             this.cantidad = '';
             this.editing = false;
+        }
+    },
+
+    mounted() {
+        // Existe usuario logueado
+        if (localStorage.getItem('usuario')) {
+            console.log("essss")
         }
     }
 }

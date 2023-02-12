@@ -9,7 +9,9 @@ export default defineComponent({
 
     data() {
         return {
-            drawer: null
+            drawer: null,
+            logged: false,
+            usuario: '',
         }
     },
 
@@ -27,9 +29,20 @@ export default defineComponent({
         },
         irAbout: function () {
             this.$router.push("/about");
-            this.ruta = this.$router;
+        },
+
+        logout: function () {
+            localStorage.removeItem('usuario');
+            this.$router.push("/login");
         }
     },
+
+    mounted() {
+        if (localStorage.getItem('usuario')) {
+            this.logged = true;
+            this.usuario = JSON.parse(localStorage.getItem('usuario'))[0];
+        }
+    }
 });
 </script>
 
@@ -47,7 +60,15 @@ export default defineComponent({
 
         <v-spacer></v-spacer>
 
-        <v-btn icon="mdi-login" @click="irLogin"></v-btn>
+        <div v-if="this.logged == false">
+            <v-btn icon="mdi-login" @click="irLogin"></v-btn>
+        </div>
+
+        <div v-else-if="this.logged == true" class="me-5 d-flex">
+            <div class="text-h6 mt-2 me-5 usuario">{{ this.usuario }}</div>
+            <v-btn icon="mdi-logout" color="red" class="bg-white" @click="logout">
+            </v-btn>
+        </div>
     </v-toolbar>
 
     <!-- Barra desplegable -->
@@ -59,6 +80,10 @@ export default defineComponent({
                     </v-img>
                 </v-col>
             </v-list-item>
+            
+            <div v-if="this.logged == true" class="text-right">
+                <div class="text-body-1 mt-2 me-5 mb-4">{{ this.usuario }}</div>
+            </div>
 
             <v-divider></v-divider>
 
@@ -66,7 +91,13 @@ export default defineComponent({
                 <v-list-item prepend-icon="mdi-home" title="Home" value="home" @click="irHome">
                 </v-list-item>
 
-                <v-list-item color="red" prepend-icon="mdi-logout" title="Cerrar sesión" value="logout" @click="">
+
+                <v-list-item color="blue" active prepend-icon="mdi-login" title="Iniciar sesión" value="login"
+                    v-if="this.logged == false" @click="irLogin">
+                </v-list-item>
+
+                <v-list-item color="red" active prepend-icon="mdi-logout" title="Cerrar sesión" value="logout"
+                    v-else-if="this.logged == true" @click="logout">
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
