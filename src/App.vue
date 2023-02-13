@@ -11,14 +11,6 @@ export default {
   },
 
   methods: {
-    irHome: function () {
-      this.$router.push("/");
-    },
-
-    irLogin: function () {
-      this.$router.push("/login");
-    },
-
     iniciarBD: function (db) {
       let store;
 
@@ -117,13 +109,6 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/lista">Lista</RouterLink>
-    </nav>
-  </div>
-
   <!-- RouterView muestra las vistas -->
   <RouterView />
 </template>
