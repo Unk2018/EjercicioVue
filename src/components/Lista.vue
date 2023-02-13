@@ -119,16 +119,16 @@ export default {
 
 
             try {
-                // Mira si existe uno anteriormente
-                buscarLista =
-                    this.lista.filter(ind => ind[0] == this.producto);
+                // Mira que producto y coste no sea vacío. Mira que el coste y cantidad es mayor de 0
+                if (this.producto != '' && this.coste != '' && costeDouble > 0 && cantidadInt > 0) {
+                    // Mira si existe uno anteriormente
+                    buscarLista =
+                        this.lista.filter(ind => ind[0] == this.producto);
 
-                if (buscarLista.length != 0) {
-                    console.log("El producto introducido ya existe ya");
-                    this.comprobarBD();
-                } else {
-                    // Mira que producto y coste no sea vacío. Mira que el coste y cantidad es mayor de 0
-                    if (this.producto != '' && this.coste != '' && costeDouble > 0 && cantidadInt > 0) {
+                    if (buscarLista.length != 0) {
+                        console.log("El producto introducido ya existe ya");
+                        this.comprobarBD();
+                    } else {
                         try {
                             // Crear usuario
                             producto = {
@@ -158,6 +158,9 @@ export default {
                         this.coste = '';
                         this.cantidad = '';
                     }
+                } else {
+                    console.log("Hay campos inválidos. Asegúrate de que productos no esté vacío y que el " +
+                        "coste y la cantidad sea mayor a 0");
                 }
             } catch (e) {
                 console.error(e);
@@ -170,9 +173,6 @@ export default {
             var cursor;
 
             try {
-                // Vacía la lista para introducir todas las existentes de la base de datos
-                this.lista = [];
-
                 // Abre los datos obtenidos. Cuando lo hace correctamente, recorrerá los datos
                 objectStore.openCursor().onsuccess = (event) => {
                     cursor = event.target.result;
@@ -593,7 +593,7 @@ export default {
                         v-if="this.logged == true && this.useBuscador == false">
                         <td>{{ index + 1 }}</td>
                         <td>{{ producto[0] }}</td>
-                        <td>{{ producto[1] }}</td>
+                        <td>{{ producto[1] }} €</td>
                         <td>{{ producto[2] }}</td>
                         <td>
                             <v-btn size="45" prepend-icon="mdi-pencil" color="yellow-darken-1"
@@ -610,7 +610,7 @@ export default {
                         v-if="this.logged == true && this.useBuscador == true">
                         <td>{{ index + 1 }}</td>
                         <td>{{ producto[0] }}</td>
-                        <td>{{ producto[1] }}</td>
+                        <td>{{ producto[1] }} €</td>
                         <td>{{ producto[2] }}</td>
                         <td>
                             <v-btn size="45" prepend-icon="mdi-pencil" color="yellow-darken-1"
@@ -627,7 +627,7 @@ export default {
                         v-if="this.logged == false && this.useBuscador == false">
                         <td>{{ index + 1 }}</td>
                         <td>{{ producto[0] }}</td>
-                        <td>{{ producto[1] }}</td>
+                        <td>{{ producto[1] }} €</td>
                         <td>{{ producto[2] }}</td>
                         <td>{{ producto[3] }}</td>
                     </tr>
@@ -637,7 +637,7 @@ export default {
                         v-if="this.logged == false && this.useBuscador == true">
                         <td>{{ index + 1 }}</td>
                         <td>{{ producto[0] }}</td>
-                        <td>{{ producto[1] }}</td>
+                        <td>{{ producto[1] }} €</td>
                         <td>{{ producto[2] }}</td>
                         <td>{{ producto[3] }}</td>
                     </tr>
